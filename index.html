@@ -100,13 +100,13 @@
       <p>Let us know if you can join Dwitha's magical celebration.</p>
       <div class="rsvp-form-card">
         <form id="rsvpForm" novalidate>
-          <label for="name">Guest Name</label>
+          <label for="name">Guest Name <span class="required-star">*</span></label>
           <input id="name" name="name" type="text" placeholder="Your name" required />
 
-          <label for="phone">Phone Number</label>
+          <label for="phone">Phone Number <span class="required-star">*</span></label>
           <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required />
 
-          <label for="attendance">Attendance</label>
+          <label for="attendance">Attendance <span class="required-star">*</span></label>
           <select id="attendance" name="attendance" required>
             <option value="yes">Yes, we'll be there</option>
             <option value="no">Sorry, can't make it</option>
@@ -114,11 +114,11 @@
 
           <div class="guest-count-grid">
             <div>
-              <label for="adults">Adults</label>
-              <input id="adults" name="adults" type="number" min="0" step="1" value="1" required />
+              <label for="adults">Adults <span class="required-star">*</span></label>
+              <input id="adults" name="adults" type="number" min="0" step="1" value="0" required />
             </div>
             <div>
-              <label for="kids">Kids</label>
+              <label for="kids">Kids <span class="required-star">*</span></label>
               <input id="kids" name="kids" type="number" min="0" step="1" value="0" required />
             </div>
           </div>

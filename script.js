@@ -122,6 +122,7 @@ function launchConfetti() {
 
 function showSuccessPrompt() {
   if (!successPrompt) return;
+  successPrompt.textContent = "🎉 RSVP Received! See you at the celebration.";
   successPrompt.classList.add("show");
   setTimeout(() => {
     successPrompt.classList.remove("show");
@@ -168,8 +169,10 @@ form.addEventListener("submit", async (event) => {
     const guestName = payload.name || "Guest";
     status.textContent = `Thank you, ${guestName}. RSVP sent successfully.`;
     status.style.color = "#3f7a44";
-    launchConfetti();
-    showSuccessPrompt();
+    if (payload.attendance === "yes") {
+      launchConfetti();
+      showSuccessPrompt();
+    }
     form.reset();
   } catch (error) {
     const isNetworkFailure =
