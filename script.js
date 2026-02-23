@@ -91,6 +91,7 @@ form.addEventListener("submit", async (event) => {
 
   const payload = {
     name: document.getElementById("name").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
     email: document.getElementById("email").value.trim(),
     attendance: document.getElementById("attendance").value,
     message: document.getElementById("message").value.trim()

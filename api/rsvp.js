@@ -28,9 +28,9 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: "Invalid JSON payload." });
   }
 
-  const { name, email, attendance, message } = body || {};
-  if (!name || !email || !attendance) {
-    return res.status(400).json({ error: "Name, email, and attendance are required." });
+  const { name, phone, email, attendance, message } = body || {};
+  if (!name || !phone || !attendance) {
+    return res.status(400).json({ error: "Name, phone, and attendance are required." });
   }
 
   const transporter = nodemailer.createTransport({
@@ -56,7 +56,8 @@ module.exports = async (req, res) => {
   const text = [
     "New Birthday RSVP",
     `Guest Name: ${name}`,
-    `Email: ${email}`,
+    `Phone: ${phone}`,
+    `Email: ${email || "Not provided"}`,
     `Attendance: ${attendance}`,
     `Message: ${safeMessage}`,
     `Submitted: ${submittedAt}`
@@ -65,20 +66,28 @@ module.exports = async (req, res) => {
   const html = `
     <h2>New Birthday RSVP</h2>
     <p><strong>Guest Name:</strong> ${escapeHtml(name)}</p>
-    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+    <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(email || "Not provided")}</p>
     <p><strong>Attendance:</strong> ${escapeHtml(attendance)}</p>
     <p><strong>Message:</strong> ${escapeHtml(safeMessage)}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(submittedAt)}</p>
   `;
 
   try {
-    await transporter.sendMail({
+    const mailOptions = {
       from: process.env.FROM_EMAIL || process.env.SMTP_USER,
       to: TO_EMAILS.join(","),
-      replyTo: email,
       subject,
       text,
       html
+    };
+
+    if (email) {
+      mailOptions.replyTo = email;
+    }
+
+    await transporter.sendMail({
+      ...mailOptions
     });
 
     return res.status(200).json({ ok: true });
