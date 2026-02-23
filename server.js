@@ -37,7 +37,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.post("/api/rsvp", async (req, res) => {
-  const { name, phone, email, attendance, adults, kids, message } = req.body || {};
+  const { name, phone, attendance, adults, kids, message } = req.body || {};
 
   if (!name || !phone || !attendance || adults === undefined || kids === undefined) {
     return res.status(400).json({ error: "Name, phone, attendance, adults, and kids are required." });
@@ -69,7 +69,6 @@ app.post("/api/rsvp", async (req, res) => {
     <h2>New Birthday RSVP</h2>
     <p><strong>Guest Name:</strong> ${escapeHtml(name)}</p>
     <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
-    <p><strong>Email:</strong> ${escapeHtml(email || "Not provided")}</p>
     <p><strong>Attendance:</strong> ${escapeHtml(attendance)}</p>
     <p><strong>Adults:</strong> ${escapeHtml(adultsCount)}</p>
     <p><strong>Kids:</strong> ${escapeHtml(kidsCount)}</p>
@@ -81,7 +80,6 @@ app.post("/api/rsvp", async (req, res) => {
     "New Birthday RSVP",
     `Guest Name: ${name}`,
     `Phone: ${phone}`,
-    `Email: ${email || "Not provided"}`,
     `Attendance: ${attendance}`,
     `Adults: ${adultsCount}`,
     `Kids: ${kidsCount}`,
@@ -97,10 +95,6 @@ app.post("/api/rsvp", async (req, res) => {
       text,
       html
     };
-
-    if (email) {
-      mailOptions.replyTo = email;
-    }
 
     await transporter.sendMail(mailOptions);
 

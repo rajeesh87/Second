@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: "Invalid JSON payload." });
   }
 
-  const { name, phone, email, attendance, adults, kids, message } = body || {};
+  const { name, phone, attendance, adults, kids, message } = body || {};
   if (!name || !phone || !attendance || adults === undefined || kids === undefined) {
     return res.status(400).json({ error: "Name, phone, attendance, adults, and kids are required." });
   }
@@ -63,7 +63,6 @@ module.exports = async (req, res) => {
     "New Birthday RSVP",
     `Guest Name: ${name}`,
     `Phone: ${phone}`,
-    `Email: ${email || "Not provided"}`,
     `Attendance: ${attendance}`,
     `Adults: ${adultsCount}`,
     `Kids: ${kidsCount}`,
@@ -75,7 +74,6 @@ module.exports = async (req, res) => {
     <h2>New Birthday RSVP</h2>
     <p><strong>Guest Name:</strong> ${escapeHtml(name)}</p>
     <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
-    <p><strong>Email:</strong> ${escapeHtml(email || "Not provided")}</p>
     <p><strong>Attendance:</strong> ${escapeHtml(attendance)}</p>
     <p><strong>Adults:</strong> ${escapeHtml(adultsCount)}</p>
     <p><strong>Kids:</strong> ${escapeHtml(kidsCount)}</p>
@@ -91,10 +89,6 @@ module.exports = async (req, res) => {
       text,
       html
     };
-
-    if (email) {
-      mailOptions.replyTo = email;
-    }
 
     await transporter.sendMail({
       ...mailOptions

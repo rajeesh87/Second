@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+  <div id="successPrompt" class="success-prompt" aria-live="polite">🎉 RSVP Received! See you at the celebration.</div>
   <div class="sparkles" aria-hidden="true"></div>
   <div class="fireworks" aria-hidden="true">
     <span class="burst fw1"></span>
@@ -103,9 +105,6 @@
 
           <label for="phone">Phone Number</label>
           <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required />
-
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com (optional)" />
 
           <label for="attendance">Attendance</label>
           <select id="attendance" name="attendance" required>

@@ -33,6 +33,47 @@ body {
   min-height: 100vh;
 }
 
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -16px;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation: confetti-fall var(--duration, 2400ms) linear forwards;
+}
+
+.success-prompt {
+  position: fixed;
+  left: 50%;
+  top: 1.1rem;
+  transform: translateX(-50%) translateY(-14px);
+  background: rgba(255, 255, 255, 0.92);
+  color: #3b2c66;
+  border: 1px solid rgba(132, 95, 190, 0.28);
+  box-shadow: 0 14px 28px rgba(86, 62, 130, 0.2);
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  z-index: 8;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.success-prompt.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .sparkles {
   position: fixed;
   inset: 0;
@@ -820,6 +861,17 @@ textarea:focus {
   50% { transform: scaleX(-1) rotate(-14deg); }
 }
 
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(var(--drift, 0px), 105vh, 0) rotate(640deg);
+    opacity: 0.15;
+  }
+}
+
 @media (max-width: 720px) {
   .invite-shell {
     width: min(980px, calc(100% - 1rem));
@@ -886,6 +938,12 @@ textarea:focus {
   .butterfly {
     width: 38px;
     height: 26px;
+  }
+
+  .success-prompt {
+    width: calc(100% - 1rem);
+    text-align: center;
+    border-radius: 14px;
   }
 
   .unicorn-float {

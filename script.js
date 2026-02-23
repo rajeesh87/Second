@@ -8,6 +8,8 @@ const cdDays = document.getElementById("cdDays");
 const cdHours = document.getElementById("cdHours");
 const cdMinutes = document.getElementById("cdMinutes");
 const cdSeconds = document.getElementById("cdSeconds");
+const confettiLayer = document.getElementById("confettiLayer");
+const successPrompt = document.getElementById("successPrompt");
 
 let manualPause = false;
 
@@ -96,6 +98,36 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+function launchConfetti() {
+  if (!confettiLayer) return;
+
+  const colors = ["#ff77b8", "#ffd45d", "#8fdcff", "#b999ff", "#7be38f", "#ff9f68"];
+  const pieces = 84;
+
+  for (let i = 0; i < pieces; i += 1) {
+    const piece = document.createElement("span");
+    piece.className = "confetti-piece";
+    piece.style.left = `${Math.random() * 100}%`;
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.setProperty("--drift", `${(Math.random() - 0.5) * 260}px`);
+    piece.style.setProperty("--duration", `${1800 + Math.random() * 1600}ms`);
+    piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+    confettiLayer.appendChild(piece);
+  }
+
+  setTimeout(() => {
+    confettiLayer.innerHTML = "";
+  }, 3800);
+}
+
+function showSuccessPrompt() {
+  if (!successPrompt) return;
+  successPrompt.classList.add("show");
+  setTimeout(() => {
+    successPrompt.classList.remove("show");
+  }, 2800);
+}
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -108,7 +140,6 @@ form.addEventListener("submit", async (event) => {
   const payload = {
     name: document.getElementById("name").value.trim(),
     phone: document.getElementById("phone").value.trim(),
-    email: document.getElementById("email").value.trim(),
     attendance: document.getElementById("attendance").value,
     adults: Number(document.getElementById("adults").value),
     kids: Number(document.getElementById("kids").value),
@@ -137,6 +168,8 @@ form.addEventListener("submit", async (event) => {
     const guestName = payload.name || "Guest";
     status.textContent = `Thank you, ${guestName}. RSVP sent successfully.`;
     status.style.color = "#3f7a44";
+    launchConfetti();
+    showSuccessPrompt();
     form.reset();
   } catch (error) {
     const isNetworkFailure =
