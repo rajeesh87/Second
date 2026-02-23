@@ -7,7 +7,7 @@
   --rose: #ff79b7;
   --gold: #ffc766;
   --ink: #332a45;
-  --card: rgba(255, 255, 255, 0.72);
+  --card: rgba(255, 255, 255, 0.45);
   --line: rgba(108, 85, 150, 0.16);
   --radius: 24px;
   --shadow: 0 18px 45px rgba(79, 50, 116, 0.12);
@@ -317,7 +317,7 @@ body {
   padding: 1.6rem 1.4rem 2rem;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, rgba(255, 247, 230, 0.85), rgba(250, 239, 255, 0.84));
+  background: linear-gradient(160deg, rgba(255, 247, 230, 0.45), rgba(250, 239, 255, 0.45));
 }
 
 .hero::before {
@@ -468,7 +468,7 @@ h1 {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   padding: 1.5rem 1.1rem;
-  background: linear-gradient(175deg, rgba(228, 246, 255, 0.52), rgba(255, 239, 247, 0.52));
+  background: linear-gradient(175deg, rgba(228, 246, 255, 0.45), rgba(255, 239, 247, 0.45));
 }
 
 .detail,
@@ -560,7 +560,7 @@ h1 {
 
 .rsvp {
   padding: 1.5rem 1.2rem;
-  background: linear-gradient(160deg, rgba(255, 242, 250, 0.7), rgba(235, 247, 255, 0.72));
+  background: linear-gradient(160deg, rgba(255, 242, 250, 0.45), rgba(235, 247, 255, 0.45));
 }
 
 .rsvp h2 {
@@ -577,7 +577,7 @@ h1 {
   margin: 0.2rem auto 0;
   padding: 1rem;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(118, 96, 170, 0.2);
   box-shadow: 0 14px 30px rgba(114, 84, 166, 0.13);
 }
