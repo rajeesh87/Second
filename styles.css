@@ -587,6 +587,12 @@ form {
   gap: 0.55rem;
 }
 
+.guest-count-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
 label {
   font-size: 0.84rem;
   font-weight: 700;
@@ -888,5 +894,10 @@ textarea:focus {
 
   .rsvp-form-card {
     padding: 0.82rem;
+  }
+
+  .guest-count-grid {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
   }
 }

@@ -37,10 +37,16 @@ app.get("/health", (_req, res) => {
 });
 
 app.post("/api/rsvp", async (req, res) => {
-  const { name, phone, email, attendance, message } = req.body || {};
+  const { name, phone, email, attendance, adults, kids, message } = req.body || {};
 
-  if (!name || !phone || !attendance) {
-    return res.status(400).json({ error: "Name, phone, and attendance are required." });
+  if (!name || !phone || !attendance || adults === undefined || kids === undefined) {
+    return res.status(400).json({ error: "Name, phone, attendance, adults, and kids are required." });
+  }
+
+  const adultsCount = Number(adults);
+  const kidsCount = Number(kids);
+  if (!Number.isFinite(adultsCount) || adultsCount < 0 || !Number.isFinite(kidsCount) || kidsCount < 0) {
+    return res.status(400).json({ error: "Adults and kids must be valid numbers." });
   }
 
   if (missingEnv.length > 0) {
@@ -65,6 +71,8 @@ app.post("/api/rsvp", async (req, res) => {
     <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
     <p><strong>Email:</strong> ${escapeHtml(email || "Not provided")}</p>
     <p><strong>Attendance:</strong> ${escapeHtml(attendance)}</p>
+    <p><strong>Adults:</strong> ${escapeHtml(adultsCount)}</p>
+    <p><strong>Kids:</strong> ${escapeHtml(kidsCount)}</p>
     <p><strong>Message:</strong> ${escapeHtml(safeMessage)}</p>
     <p><strong>Submitted:</strong> ${escapeHtml(submittedAt)}</p>
   `;
@@ -75,6 +83,8 @@ app.post("/api/rsvp", async (req, res) => {
     `Phone: ${phone}`,
     `Email: ${email || "Not provided"}`,
     `Attendance: ${attendance}`,
+    `Adults: ${adultsCount}`,
+    `Kids: ${kidsCount}`,
     `Message: ${safeMessage}`,
     `Submitted: ${submittedAt}`
   ].join("\n");

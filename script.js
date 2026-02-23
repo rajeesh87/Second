@@ -110,6 +110,8 @@ form.addEventListener("submit", async (event) => {
     phone: document.getElementById("phone").value.trim(),
     email: document.getElementById("email").value.trim(),
     attendance: document.getElementById("attendance").value,
+    adults: Number(document.getElementById("adults").value),
+    kids: Number(document.getElementById("kids").value),
     message: document.getElementById("message").value.trim()
   };
 

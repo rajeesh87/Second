@@ -113,6 +113,17 @@
             <option value="no">Sorry, can't make it</option>
           </select>
 
+          <div class="guest-count-grid">
+            <div>
+              <label for="adults">Adults</label>
+              <input id="adults" name="adults" type="number" min="0" step="1" value="1" required />
+            </div>
+            <div>
+              <label for="kids">Kids</label>
+              <input id="kids" name="kids" type="number" min="0" step="1" value="0" required />
+            </div>
+          </div>
+
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="4" placeholder="Any notes"></textarea>
 
