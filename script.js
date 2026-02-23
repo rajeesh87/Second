@@ -17,7 +17,7 @@ async function playMusic() {
     musicToggle.textContent = "Pause Music";
     musicToggle.setAttribute("aria-pressed", "true");
   } catch {
-    musicToggle.textContent = "Tap to Play Music";
+    musicToggle.textContent = "Play Music";
     musicToggle.setAttribute("aria-pressed", "false");
   }
 }
@@ -30,6 +30,9 @@ function pauseMusic() {
 
 // Try autoplay; many browsers block it until a user interaction.
 playMusic();
+document.addEventListener("DOMContentLoaded", playMusic, { once: true });
+window.addEventListener("load", playMusic, { once: true });
+music.addEventListener("canplay", playMusic, { once: true });
 
 musicToggle.addEventListener("click", async () => {
   if (music.paused) {
@@ -39,6 +42,19 @@ musicToggle.addEventListener("click", async () => {
     manualPause = true;
     pauseMusic();
   }
+});
+
+// If autoplay is blocked, start on first interaction unless user manually paused.
+["pointerdown", "touchstart", "keydown"].forEach((eventName) => {
+  document.addEventListener(
+    eventName,
+    () => {
+      if (!manualPause && music.paused) {
+        playMusic();
+      }
+    },
+    { once: true, passive: true }
+  );
 });
 
 document.addEventListener(
