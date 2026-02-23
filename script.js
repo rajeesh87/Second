@@ -148,7 +148,7 @@ form.addEventListener("submit", async (event) => {
   };
 
   if (payload.attendance === "yes" && payload.adults + payload.kids <= 0) {
-    status.textContent = "For 'Yes' attendance, Adults or Kids must be greater than 0.";
+    status.textContent = "Please update number of guests.";
     status.style.color = "#a13f5e";
     return;
   }

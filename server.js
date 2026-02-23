@@ -50,7 +50,7 @@ app.post("/api/rsvp", async (req, res) => {
   }
 
   if (String(attendance).toLowerCase() === "yes" && adultsCount + kidsCount <= 0) {
-    return res.status(400).json({ error: "For 'Yes' attendance, adults or kids must be greater than 0." });
+    return res.status(400).json({ error: "Please update number of guests." });
   }
 
   if (missingEnv.length > 0) {
