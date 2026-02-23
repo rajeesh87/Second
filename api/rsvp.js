@@ -39,6 +39,10 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: "Adults and kids must be valid numbers." });
   }
 
+  if (String(attendance).toLowerCase() === "yes" && adultsCount + kidsCount <= 0) {
+    return res.status(400).json({ error: "For 'Yes' attendance, adults or kids must be greater than 0." });
+  }
+
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT || 465),

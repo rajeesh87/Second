@@ -49,6 +49,10 @@ app.post("/api/rsvp", async (req, res) => {
     return res.status(400).json({ error: "Adults and kids must be valid numbers." });
   }
 
+  if (String(attendance).toLowerCase() === "yes" && adultsCount + kidsCount <= 0) {
+    return res.status(400).json({ error: "For 'Yes' attendance, adults or kids must be greater than 0." });
+  }
+
   if (missingEnv.length > 0) {
     return res.status(500).json({
       error: `Server email setup missing: ${missingEnv.join(", ")}`

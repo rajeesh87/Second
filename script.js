@@ -147,6 +147,12 @@ form.addEventListener("submit", async (event) => {
     message: document.getElementById("message").value.trim()
   };
 
+  if (payload.attendance === "yes" && payload.adults + payload.kids <= 0) {
+    status.textContent = "For 'Yes' attendance, Adults or Kids must be greater than 0.";
+    status.style.color = "#a13f5e";
+    return;
+  }
+
   submitButton.disabled = true;
   submitButton.textContent = "Sending...";
   status.textContent = "Sending RSVP...";
