@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dwitha Turns 5 - Birthday Invite</title>
+  <meta name="description" content="Whimsical unicorn garden birthday invitation for Dwitha (Minnu)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true"></div>
+  <div class="fireworks" aria-hidden="true">
+    <span class="burst fw1"></span>
+    <span class="burst fw2"></span>
+    <span class="burst fw3"></span>
+    <span class="burst fw4"></span>
+    <span class="burst fw5"></span>
+  </div>
+  <div class="balloon-scene" aria-hidden="true">
+    <span class="balloon pink b1"></span>
+    <span class="balloon gold b2"></span>
+    <span class="balloon pink b3"></span>
+    <span class="balloon gold b4"></span>
+    <span class="balloon pink b5"></span>
+    <span class="balloon gold b6"></span>
+  </div>
+  <div class="magic-creatures" aria-hidden="true">
+    <span class="fairy f1"></span>
+    <span class="fairy tinkerbell f2"></span>
+    <span class="fairy f3"></span>
+    <span class="fairy tinkerbell f4"></span>
+    <span class="fairy tinkerbell f5"></span>
+    <span class="fairy tinkerbell f6"></span>
+
+    <span class="butterfly bt1"></span>
+    <span class="butterfly bt2"></span>
+    <span class="butterfly bt3"></span>
+    <span class="butterfly bt4"></span>
+    <span class="butterfly butterfly-cross bx1"></span>
+    <span class="butterfly butterfly-cross bx2"></span>
+    <span class="butterfly butterfly-cross bx3"></span>
+    <span class="unicorn-float uf1">🦄</span>
+    <span class="unicorn-float uf2">🦄</span>
+  </div>
+
+  <main class="invite-shell">
+    <section class="hero card section-band hero-band reveal">
+      <button id="musicToggle" class="btn btn-ghost music-corner" type="button" aria-pressed="false">Tap to Play Music</button>
+      <p class="eyebrow">Whimsical Garden Party</p>
+      <h1>Dwitha (Minnu) Turns 5!</h1>
+      <p class="subtext">Flutter into a magical garden where fairies glow, butterflies dance, and unicorns sparkle just for Minnu.</p>
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="count-item"><span id="cdDays">00</span><small>Days</small></div>
+        <div class="count-item"><span id="cdHours">00</span><small>Hours</small></div>
+        <div class="count-item"><span id="cdMinutes">00</span><small>Minutes</small></div>
+        <div class="count-item"><span id="cdSeconds">00</span><small>Seconds</small></div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#rsvp" class="btn btn-primary">RSVP Now</a>
+      </div>
+
+      <audio id="bgMusic" src="./assets/followHeart.mov" preload="metadata" loop></audio>
+    </section>
+
+    <section class="details-grid section-band details-band reveal delay-1">
+      <article class="detail card">
+        <h2>Date</h2>
+        <p>Saturday, April 11, 2026</p>
+      </article>
+      <article class="detail card">
+        <h2>Time</h2>
+        <p>6:00 PM - 9:00 PM</p>
+      </article>
+      <article class="detail card detail-wide where-card">
+        <h2>📍 Location</h2>
+        <p class="where-link-wrap">
+          <a
+            class="where-link"
+            href="https://www.google.com/maps/search/?api=1&query=New+River+Civic+Center%2C+60+Weston+Road%2C+Sunrise%2C+FL+33326"
+            target="_blank"
+            rel="noopener noreferrer"
+          >New River Civic Center<br />60 Weston Road, Sunrise, FL 33326</a>
+        </p>
+      </article>
+      <article class="card note detail-wide">
+        <p class="note-tag">With Love</p>
+        <h3 class="note-title">A Magical Invite for You</h3>
+        <p class="note-text">You are warmly invited to celebrate Minnu's 5th birthday! Join us for a dreamy evening of laughter, fairy wings, fluttering butterflies, and unicorn magic.</p>
+      </article>
+    </section>
+
+    <section id="rsvp" class="rsvp card section-band rsvp-band reveal delay-2">
+      <h2>RSVP</h2>
+      <p>Let us know if you can join Minnu's magical celebration.</p>
+      <div class="rsvp-form-card">
+        <form id="rsvpForm" novalidate>
+          <label for="name">Guest Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+          <label for="attendance">Attendance</label>
+          <select id="attendance" name="attendance" required>
+            <option value="yes">Yes, we'll be there</option>
+            <option value="no">Sorry, can't make it</option>
+          </select>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Any notes"></textarea>
+
+          <button class="btn btn-primary submit" type="submit">Send RSVP</button>
+        </form>
+      </div>
+      <p id="status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
